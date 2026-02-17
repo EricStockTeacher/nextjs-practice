@@ -1,5 +1,4 @@
-import "./globals.css";
-import NavBar from "@/Components/NavBar.jsx"
+import "../globals.css";
 import { SanityLive } from "@/sanity/lib/live";
 
 export const metadata = {
@@ -11,7 +10,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-gray-50 min-h-screen">
-        <NavBar></NavBar>
         {children}
         <SanityLive></SanityLive>
       </body>
