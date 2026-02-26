@@ -1,6 +1,6 @@
 import "./globals.css";
 import NavBar from "@/Components/NavBar.jsx"
-import { SanityLive } from "@/sanity/lib/live";
+//import { SanityLive } from "@/sanity/lib/live";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +13,6 @@ export default function RootLayout({ children }) {
       <body className="bg-gray-50 min-h-screen">
         <NavBar></NavBar>
         {children}
-        <SanityLive></SanityLive>
       </body>
     </html>
   );

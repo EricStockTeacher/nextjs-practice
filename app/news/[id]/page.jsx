@@ -1,7 +1,17 @@
 import Image from "next/image"
 import { defineQuery } from "next-sanity";
-import {sanityFetch} from "@/sanity/lib/live"
+import {client} from "@/sanity/lib/client"
 import { urlFor } from "@/sanity/lib/image";
+
+
+export async function generateStaticParams() {
+    const NEWS_QUERY = defineQuery("*[_type=='newsItem']{id}")
+    const post = await client.fetch(NEWS_QUERY)
+
+    return post.map( (newsItem) => ({
+        id: newsItem.id.toString()
+    }))
+}
 
 
 export default async function NewsItem(props) {    
@@ -10,7 +20,7 @@ export default async function NewsItem(props) {
 
     const NEWS_QUERY = defineQuery("*[_type=='newsItem' && id == $id][0]")
 
-    const {data: newsEntry} = await sanityFetch({ query: NEWS_QUERY, params: {id: parseInt(id)}})
+    const newsEntry = await client.fetch(NEWS_QUERY, {id: parseInt(id)})
     //const newsEntry = newsData.find( (newsItem) => newsItem.id == id)
     console.log(newsEntry)
 

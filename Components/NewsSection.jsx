@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import {sanityFetch} from "@/sanity/lib/live"
+import {client} from "@/sanity/lib/client"
 import Link from "next/link"
 
 
@@ -10,7 +10,7 @@ const NEWS_QUERY = defineQuery(
 
 export default async function NewsSection() {
 
-    const {data} = await sanityFetch({ query: NEWS_QUERY })
+    const data = await client.fetch(NEWS_QUERY)
     console.log(data)
 
     return (
